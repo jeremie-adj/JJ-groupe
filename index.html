@@ -80,6 +80,40 @@
   .btn{background:var(--accent);color:#fff;padding:11px 20px;border-radius:999px;border:none;cursor:pointer;font-weight:700;box-shadow:0 10px 26px rgba(74,144,226,0.12);transition:transform .18s}
   .btn:hover{transform:translateY(-4px)}
 
+  <section id="download" class="section" style="text-align:center; padding:60px 20px; max-width:900px; margin:60px auto;">
+  <h2 style="color:var(--accent); font-size:1.6rem; margin-bottom:18px;">Téléchargez notre application mobile</h2>
+  <p style="color:#666; font-size:1rem; margin-bottom:28px;">
+    Installez notre application sur votre smartphone pour profiter de JJ Groupe directement depuis votre téléphone.
+  </p>
+
+  <!-- Boutons -->
+  <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+    <!-- Android -->
+    <a href="JJGroupeApp.apk" download
+       style="display:flex; align-items:center; gap:8px; background:var(--accent-2); color:#fff; padding:14px 28px; border-radius:999px; font-weight:700; text-decoration:none; box-shadow:0 10px 30px rgba(80,227,194,0.12); transition: transform .25s;">
+      <i class="fa-brands fa-android" style="font-size:1.2rem;"></i>
+      Télécharger Android
+    </a>
+
+    <!-- iOS -->
+    <a href="https://testflight.apple.com/join/TON_CODE_TESTFLIGHT" target="_blank"
+       style="display:flex; align-items:center; gap:8px; background:#007AFF; color:#fff; padding:14px 28px; border-radius:999px; font-weight:700; text-decoration:none; box-shadow:0 10px 30px rgba(0,122,255,0.12); transition: transform .25s;">
+      <i class="fa-brands fa-apple" style="font-size:1.2rem;"></i>
+      Télécharger iOS
+    </a>
+  </div>
+</section>
+
+<script>
+  // Effet hover sur les boutons
+  const buttons = document.querySelectorAll('#download a');
+  buttons.forEach(btn => {
+    btn.addEventListener('mouseover', ()=> btn.style.transform='translateY(-4px)');
+    btn.addEventListener('mouseout', ()=> btn.style.transform='translateY(0)');
+  });
+</script>
+
+
   /* form feedback */
   .msg{display:none;padding:12px;border-radius:10px;margin-top:12px}
   .msg.success{background:linear-gradient(90deg,#e6fffb,#e6fff4);color:#0a6;display:none}
