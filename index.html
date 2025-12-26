@@ -1,347 +1,37 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Entreprise XYZ — Landing</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-  :root{
-    --accent:#4a90e2;
-    --accent-2:#50e3c2;
-    --bg:#f5f7fa;
-    --card:#ffffff;
-    --muted:#666;
-    --radius:14px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Roboto,system-ui,Segoe UI,Arial; background:var(--bg); color:#222; line-height:1.5; -webkit-font-smoothing:antialiased}
-  a{color:var(--accent); text-decoration:none}
-
-  /* NAV */
-  nav{position:fixed;left:0;right:0;top:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(255,255,255,0.6);backdrop-filter: blur(6px);z-index:40;box-shadow:0 6px 18px rgba(20,20,30,0.06)}
-  .brand{display:flex;gap:10px;align-items:center;font-weight:700;color:var(--accent)}
-  .brand i{font-size:20px}
-  .nav-links{display:flex;gap:18px}
-  .nav-links a{padding:8px 12px;border-radius:10px;font-weight:500}
-  .nav-links a:hover{background:rgba(74,144,226,0.08)}
-
-  /* HEADER - PARALLAX */
-  header{height:80vh;min-height:520px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-  header .bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=1950&q=80');background-size:cover;background-position:center;transform:translateZ(0);will-change:transform}
-  header .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(6,11,30,0.35), rgba(6,11,30,0.45))}
-  header .hero{position:relative;z-index:5;max-width:1100px;padding:40px;text-align:center;color:#fff}
-  header h1{font-size:clamp(28px,4.6vw,52px);margin-bottom:12px;letter-spacing:-0.01em}
-  header p{font-size:1.05rem;margin-bottom:18px;color:rgba(255,255,255,0.9)}
-  .cta{display:inline-block;background:var(--accent-2);color:#fff;padding:12px 26px;border-radius:999px;font-weight:700;box-shadow:0 10px 30px rgba(80,227,194,0.12);transition:transform .25s,box-shadow .25s}
-  .cta:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(80,227,194,0.18)}
-
-  <!-- Snipcart -->
-<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.css" />
-<script async src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"></script>
-
-<!-- Snipcart API key -->
-<div hidden id="snipcart" data-api-key="A REMPLACER PAR TA CLÉ"></div>
-
-  
-  /* MAIN */
-  main{margin-top:32px}
-
-  /* SERVICES */
-  .section{max-width:1100px;margin:60px auto;padding:0 20px}
-  .section h2{color:var(--accent);font-size:1.6rem;margin-bottom:18px;text-align:center}
-  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .card{background:var(--card);padding:26px;border-radius:var(--radius);box-shadow:0 12px 30px rgba(20,20,30,0.06);text-align:center;transition:transform .28s,box-shadow .28s}
-  .card:hover{transform:translateY(-10px);box-shadow:0 20px 48px rgba(20,20,30,0.09)}
-  .card i{font-size:36px;color:var(--accent);margin-bottom:12px}
-  .card h3{margin-bottom:10px}
-  .card p{color:var(--muted);font-size:0.98rem}
-
-  /* ABOUT */
-  .about{margin:40px auto;padding:60px 20px;border-radius:var(--radius);overflow:hidden;position:relative;background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80');background-size:cover}
-  .about .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.55))}
-  .about .inner{position:relative;z-index:2;color:#fff;max-width:900px;margin:0 auto;text-align:center}
-  .about p{color:rgba(255,255,255,0.95);font-size:1.05rem}
-
-  /* TESTIMONIALS CAROUSEL */
-  .testimonials{max-width:1100px;margin:60px auto;padding:0 18px;text-align:center}
-  .testimonials .viewport{position:relative;overflow:hidden;border-radius:12px}
-  .track{display:flex;gap:18px;transition:transform .6s cubic-bezier(.22,.9,.34,1);padding:18px}
-  .testimonial{flex:0 0 320px;background:#fff;padding:22px;border-radius:10px;box-shadow:0 8px 24px rgba(10,10,20,0.06)}
-  .testimonial p{font-style:italic;color:var(--muted);margin-bottom:12px}
-  .testimonial h4{color:var(--accent);font-weight:700;font-size:0.98rem}
-
-  /* dots & controls */
-  .controls{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px}
-  .dot{width:10px;height:10px;border-radius:50%;background:#ddd;opacity:0.9}
-  .dot.active{background:var(--accent)}
-
-  /* CONTACT */
-  .contact{max-width:980px;margin:60px auto;padding:28px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:0 14px 40px rgba(15,20,30,0.05)}
-  .contact h2{color:var(--accent);text-align:center;margin-bottom:8px}
-  .contact p{color:var(--muted);text-align:center;margin-bottom:18px}
-  form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  input,textarea{padding:12px 14px;border-radius:10px;border:1px solid #e2e8f0;font-size:0.95rem}
-  textarea{grid-column:1/3;min-height:140px;resize:vertical}
-  .btn-row{grid-column:1/3;display:flex;justify-content:center;margin-top:6px}
-  .btn{background:var(--accent);color:#fff;padding:11px 20px;border-radius:999px;border:none;cursor:pointer;font-weight:700;box-shadow:0 10px 26px rgba(74,144,226,0.12);transition:transform .18s}
-  .btn:hover{transform:translateY(-4px)}
-
-  <section id="download" class="section" style="text-align:center; padding:60px 20px; max-width:900px; margin:60px auto;">
-  <h2 style="color:var(--accent); font-size:1.6rem; margin-bottom:18px;">Téléchargez notre application mobile</h2>
-  <p style="color:#666; font-size:1rem; margin-bottom:28px;">
-    Installez notre application sur votre smartphone pour profiter de JJ Groupe directement depuis votre téléphone.
-  </p>
-
-  <!-- Boutons -->
-  <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-    <!-- Android -->
-    <a href="JJGroupeApp.apk" download
-       style="display:flex; align-items:center; gap:8px; background:var(--accent-2); color:#fff; padding:14px 28px; border-radius:999px; font-weight:700; text-decoration:none; box-shadow:0 10px 30px rgba(80,227,194,0.12); transition: transform .25s;">
-      <i class="fa-brands fa-android" style="font-size:1.2rem;"></i>
-      Télécharger Android
-    </a>
-
-    <!-- iOS -->
-    <a href="https://testflight.apple.com/join/TON_CODE_TESTFLIGHT" target="_blank"
-       style="display:flex; align-items:center; gap:8px; background:#007AFF; color:#fff; padding:14px 28px; border-radius:999px; font-weight:700; text-decoration:none; box-shadow:0 10px 30px rgba(0,122,255,0.12); transition: transform .25s;">
-      <i class="fa-brands fa-apple" style="font-size:1.2rem;"></i>
-      Télécharger iOS
-    </a>
-  </div>
-</section>
-
-<script>
-  // Effet hover sur les boutons
-  const buttons = document.querySelectorAll('#download a');
-  buttons.forEach(btn => {
-    btn.addEventListener('mouseover', ()=> btn.style.transform='translateY(-4px)');
-    btn.addEventListener('mouseout', ()=> btn.style.transform='translateY(0)');
-  });
-</script>
-
-
-  /* form feedback */
-  .msg{display:none;padding:12px;border-radius:10px;margin-top:12px}
-  .msg.success{background:linear-gradient(90deg,#e6fffb,#e6fff4);color:#0a6;display:none}
-  .msg.error{background:#fff0f0;color:#b00;display:none}
-
-  /* FOOTER */
-  footer{margin-top:36px;padding:28px;background:#0f1724;color:#fff;text-align:center;border-top-left-radius:12px;border-top-right-radius:12px}
-  footer a{color:var(--accent-2)}
-
-  /* Responsive */
-  @media(max-width:980px){.services{grid-template-columns:repeat(2,1fr)}nav{padding:0 14px}}
-  @media(max-width:720px){
-    .services{grid-template-columns:1fr}
-    nav .nav-links{display:none}
-    header{height:64vh;min-height:420px}
-    form{grid-template-columns:1fr}
-    textarea{grid-column:1/2}
-    .testimonial{flex:0 0 90%}
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>JJ-GROUPE | Téléchargement</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<nav>
-  <div class="brand"><i class="fa-solid fa-briefcase"></i> Entreprise XYZ</div>
-  <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#about">À propos</a>
-    <a href="#testimonials">Témoignages</a>
-    <a href="#contact">Contact</a>
+  <div class="container">
+    <h1>JJ-GROUPE</h1>
+    <p class="subtitle">
+      Application professionnelle de gestion<br>
+      Couture • Coiffure • Stocks • Ventes
+    </p>
+
+    <a href="app-release.apk" download>
+      <button class="download-btn">
+        Télécharger l’application Android
+      </button>
+    </a>
+
+    <div class="warning">
+      <strong>Important :</strong><br>
+      Après le téléchargement, activez <br>
+      <em>« Autoriser cette source »</em> pour installer l’application.
+    </div>
+
+    <div class="footer">
+      © 2025 — JJ-GROUPE
+    </div>
   </div>
-</nav>
-
-<header id="home">
-  <div class="bg" id="parallaxBg"></div>
-  <div class="overlay"></div>
-  <div class="hero">
-    <h1>Solutions digitales pour faire grandir votre entreprise</h1>
-    <p>Stratégie, marketing et développement web — tout ce qu'il faut pour décoller.</p>
-    <a class="cta" href="#contact">Demander une démo</a>
-  </div>
-</header>
-
-<main>
-  <section id="services" class="section">
-    <h2>Nos Services</h2>
-    <div class="services">
-      <div class="card fade-in">
-        <i class="fa-solid fa-lightbulb"></i>
-        <h3>Conseil stratégique</h3>
-        <p>Audit, feuille de route et accompagnement pour prendre les bonnes décisions.</p>
-      </div>
-      <div class="card fade-in">
-        <i class="fa-solid fa-bullhorn"></i>
-        <h3>Marketing digital</h3>
-        <p>Acquisition, SEO & campagnes payantes pour augmenter votre visibilité et ventes.</p>
-      </div>
-      <div class="card fade-in">
-        <i class="fa-solid fa-code"></i>
-        <h3>Développement web</h3>
-        <p>Sites et applications performants, accessibles et adaptés à votre activité.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="about">
-    <div class="overlay"></div>
-    <div class="inner">
-      <h2>À propos de nous</h2>
-      <p>Nous sommes une équipe dédiée à l'impact — stratégie, créativité et exécution pour aider les PME et startups à se développer durablement.</p>
-    </div>
-  </section>
-
-  <section id="testimonials" class="testimonials">
-    <h2>Témoignages</h2>
-    <div class="viewport" aria-hidden="false">
-      <div class="track" id="track">
-        <div class="testimonial">
-          <p>"Grâce à Entreprise XYZ, notre trafic a doublé et nos conversions ont augmenté."</p>
-          <h4>- Alice M., CEO</h4>
-        </div>
-        <div class="testimonial">
-          <p>"Équipe réactive et solution sur-mesure — on recommande sans hésiter."</p>
-          <h4>- Marc D., Marketing</h4>
-        </div>
-        <div class="testimonial">
-          <p>"Livraison soignée et accompagnement stratégique très utile."</p>
-          <h4>- Sophie L., eCom</h4>
-        </div>
-        <div class="testimonial">
-          <p>"Processus clair, résultats concrets — excellent rapport qualité/prix."</p>
-          <h4>- Karim B., Fondateur</h4>
-        </div>
-      </div>
-    </div>
-    <div class="controls" id="dots"></div>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2>Contactez-nous</h2>
-    <p>Parlez-nous de votre projet — réponse sous 48h ouvrées.</p>
-
-    <form id="contactForm" novalidate>
-      <input id="name" name="name" type="text" placeholder="Nom complet" required />
-      <input id="email" name="email" type="email" placeholder="Email" required />
-      <textarea id="message" name="message" placeholder="Votre message" required></textarea>
-      <div class="btn-row">
-        <button class="btn" type="submit">Envoyer</button>
-      </div>
-      <div class="msg success" id="successMsg">Merci — votre message a bien été envoyé. Nous revenons vers vous bientôt.</div>
-      <div class="msg error" id="errorMsg">Erreur : merci de vérifier les informations et réessayer.</div>
-    </form>
-  </section>
-
-</main>
-
-<footer>
-  © <span id="year"></span> Entreprise XYZ — <a href="mailto:contact@entreprisexyz.com">contact@entreprisexyz.com</a>
-</footer>
-
-<script>
-/* Utils: smooth native links already enabled by CSS scroll-behavior.
-   Extra JS features: parallax, fade-in on scroll, testimonial carousel auto + dots, form validation & simulated submit. */
-
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* PARALLAX simple */
-const parallaxBg = document.getElementById('parallaxBg');
-window.addEventListener('scroll', () => {
-  const sc = window.scrollY;
-  // move bg slower for parallax feel
-  parallaxBg.style.transform = `translateY(${sc * 0.2}px)`;
-});
-
-/* FADE IN on scroll */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if(e.isIntersecting) e.target.classList.add('show');
-  });
-},{threshold: 0.2});
-document.querySelectorAll('.fade-in, .card, .testimonial').forEach(el => {
-  el.classList.add('fade-in'); observer.observe(el);
-});
-
-/* TESTIMONIAL CAROUSEL */
-const track = document.getElementById('track');
-const testimonials = Array.from(track.children);
-const dotsBox = document.getElementById('dots');
-let index = 0;
-const visibleWidth = () => track.parentElement.offsetWidth;
-const slideWidth = () => testimonials[0].offsetWidth + parseInt(getComputedStyle(track).gap || 18);
-
-function updateTrack(){
-  const shift = index * slideWidth();
-  track.style.transform = `translateX(-${shift}px)`;
-  // update dots
-  Array.from(dotsBox.children).forEach((d,i)=>d.classList.toggle('active', i === index));
-}
-// create dots (one per real slide position that fits)
-const maxIndex = Math.max(0, testimonials.length - Math.floor(visibleWidth() / slideWidth()) );
-for(let i=0;i<=maxIndex;i++){
-  const dot = document.createElement('div');
-  dot.className = 'dot' + (i===0? ' active' : '');
-  dot.addEventListener('click', ()=>{ index = i; resetAuto(); updateTrack(); });
-  dotsBox.appendChild(dot);
-}
-window.addEventListener('resize', ()=>{ index = Math.min(index, Math.max(0, testimonials.length - Math.floor(visibleWidth() / slideWidth()))); updateTrack(); });
-
-let autoTimer = null;
-function autoSlide(){ 
-  const max = Math.max(0, testimonials.length - Math.floor(visibleWidth() / slideWidth()));
-  index = (index >= max) ? 0 : index + 1;
-  updateTrack();
-}
-function resetAuto(){
-  if(autoTimer) clearInterval(autoTimer);
-  autoTimer = setInterval(autoSlide, 4000);
-}
-updateTrack();
-resetAuto();
-
-/* FORM validation + simulated submit */
-const form = document.getElementById('contactForm');
-const successMsg = document.getElementById('successMsg');
-const errorMsg = document.getElementById('errorMsg');
-
-function validateEmail(email){
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-form.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  successMsg.style.display = 'none'; errorMsg.style.display = 'none';
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-  const message = form.message.value.trim();
-  if(!name || !email || !message || !validateEmail(email)){
-    errorMsg.textContent = 'Erreur : merci de vérifier les informations et réessayer.';
-    errorMsg.style.display = 'block';
-    return;
-  }
-  // simulate network send
-  const sendButton = form.querySelector('.btn');
-  sendButton.disabled = true;
-  sendButton.textContent = 'Envoi...';
-  setTimeout(()=>{
-    // on "success" show message and reset
-    successMsg.style.display = 'block';
-    form.reset();
-    sendButton.disabled = false;
-    sendButton.textContent = 'Envoyer';
-    // optionally: store lead locally
-    try{
-      const leads = JSON.parse(localStorage.getItem('leads')||'[]');
-      leads.push({name, email, message, date: new Date().toISOString()});
-      localStorage.setItem('leads', JSON.stringify(leads));
-    }catch(e){}
-  }, 1100);
-});
-</script>
 
 </body>
 </html>
